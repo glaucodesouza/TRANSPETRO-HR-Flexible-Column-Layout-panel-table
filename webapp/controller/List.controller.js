@@ -17,6 +17,7 @@ sap.ui.define([
         },
 
         onListItemPress: function (oEvent) {
+
             const oItem = oEvent.getParameter("listItem");
             const oContext = oItem.getBindingContext("mdlOcorrencias");
 
@@ -27,10 +28,29 @@ sap.ui.define([
             const sPath = oContext.getPath();
             const sIndex = sPath.split("/").pop();
 
+            const oNextUIState = this.getOwnerComponent()
+                .getHelper()
+                .getNextUIState(1);
+
             this.oRouter.navTo("detail", {
                 ocorrencia: sIndex,
-                layout: LayoutType.TwoColumnsMidExpanded
+                layout: oNextUIState.layout
             });
+
+            // const oItem = oEvent.getParameter("listItem");
+            // const oContext = oItem.getBindingContext("mdlOcorrencias");
+
+            // if (!oContext) {
+            //     return;
+            // }
+
+            // const sPath = oContext.getPath();
+            // const sIndex = sPath.split("/").pop();
+
+            // this.oRouter.navTo("detail", {
+            //     ocorrencia: sIndex,
+            //     layout: LayoutType.TwoColumnsMidExpanded
+            // });
         },
 
         onSearch: function (oEvent) {
