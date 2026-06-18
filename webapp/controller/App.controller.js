@@ -20,13 +20,44 @@ sap.ui.define([
             const oArguments = oEvent.getParameter("arguments");
             const sLayout = oArguments.layout || LayoutType.OneColumn;
 
-            this.getOwnerComponent()
-                .getModel()
-                .setProperty("/layout", sLayout);
+            // this.getOwnerComponent()
+            //     .getModel()
+            //     .setProperty("/layout", sLayout);
+            this.getOwnerComponent().getModel("layout").setProperty("/layout", sLayout);
         }
     });
 });
+//TESTE 2
+// sap.ui.define([
+//     "sap/ui/core/mvc/Controller",
+//     "sap/f/library"
+// ], (
+//     BaseController,
+//     fioriLibrary
+// ) => {
+//     "use strict";
 
+//     const LayoutType = fioriLibrary.LayoutType;
+
+//     return BaseController.extend("zhr.flexiblecolumnlayout.controller.App", {
+//         onInit() {
+//             this.getOwnerComponent()
+//                 .getRouter()
+//                 .attachRouteMatched(this._onRouteMatched, this);
+//         },
+
+//         _onRouteMatched(oEvent) {
+//             const oArguments = oEvent.getParameter("arguments");
+//             const sLayout = oArguments.layout || LayoutType.OneColumn;
+
+//             this.getOwnerComponent()
+//                 .getModel()
+//                 .setProperty("/layout", sLayout);
+//         }
+//     });
+// });
+
+// TESTE 1
 // sap.ui.define([
 //     "sap/ui/core/mvc/Controller"
 // ], (BaseController) => {

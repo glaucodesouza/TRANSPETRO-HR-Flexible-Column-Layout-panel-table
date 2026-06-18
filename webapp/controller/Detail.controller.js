@@ -1,126 +1,58 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function (Controller) {
+    "sap/ui/core/mvc/Controller",
+    "sap/f/library"
+], function (Controller, fioriLibrary) {
     "use strict";
 
-    return Controller.extend(
-        "zhr.flexiblecolumnlayout.controller.Detail",
-        {
+    const LayoutType = fioriLibrary.LayoutType;
 
-            onInit: function () {
+    return Controller.extend("zhr.flexiblecolumnlayout.controller.Detail", {
+        onInit: function () {
+            this.oRouter = this.getOwnerComponent().getRouter();
 
-                this.getOwnerComponent()
-                    .getRouter()
-                    .getRoute("detail")
-                    .attachPatternMatched(
-                        this._onPatternMatched,
-                        this
-                    );
+            this.oRouter
+                .getRoute("detail")
+                .attachPatternMatched(this._onPatternMatched, this);
+        },
 
-            },
+        _onPatternMatched: function (oEvent) {
+            const oArguments = oEvent.getParameter("arguments");
 
-            _onPatternMatched: function (oEvent) {
+            this._sOcorrencia = oArguments.ocorrencia;
 
-                var sIndex =
-                    oEvent.getParameter("arguments")
-                        .ocorrencia;
+            const sLayout = oArguments.layout || LayoutType.TwoColumnsMidExpanded;
 
-                this.getView().bindElement({
-                    path: "/Ocorrencias/" + sIndex,
-                    model: "mdlOcorrencias"
-                });
+            this.getOwnerComponent().getModel("layout").setProperty("/layout", sLayout);
+            // this.getOwnerComponent()
+            //     .getModel()
+            //     .setProperty("/layout", sLayout);
 
-            },
+            this.getView().bindElement({
+                path: "/Ocorrencias/" + this._sOcorrencia,
+                model: "mdlOcorrencias"
+            });
+        },
 
-            handleFullScreen: function () {
+        handleFullScreen: function () {
+            this.oRouter.navTo("detail", {
+                ocorrencia: this._sOcorrencia,
+                layout: LayoutType.MidColumnFullScreen
+            });
+        },
 
-                this.getOwnerComponent().getModel("layout").setProperty(
-                    "/layout",
-                    "MidColumnFullScreen"
-                );
+        handleExitFullScreen: function () {
+            this.oRouter.navTo("detail", {
+                ocorrencia: this._sOcorrencia,
+                layout: LayoutType.TwoColumnsMidExpanded
+            });
+        },
 
-            },
+        handleClose: function () {
+            this.getOwnerComponent()
+                .getModel()
+                .setProperty("/layout", LayoutType.OneColumn);
 
-            
-            handleExitFullScreen: function () {
-
-                this.getModel("layout").setProperty(
-                    "/layout",
-                    "TwoColumnsMidExpanded"
-                );
-
-            },
-
-
-            handleClose: function () {
-
-                this.getOwnerComponent()
-                    .getRouter()
-                    .navTo("master");
-
-            }
-
+            this.oRouter.navTo("master");
         }
-    );
+    });
 });
-
-// sap.ui.define([
-// 	"sap/ui/model/json/JSONModel",
-// 	"sap/ui/core/mvc/Controller"
-// ], function (JSONModel, Controller) {
-// 	"use strict";
-
-// 	return Controller.extend("zhr.flexiblecolumnlayout.controller.Detail", {
-
-
-//         onInit: function () {
-
-//             this.getOwnerComponent()
-//                 .getRouter()
-//                 .getRoute("detail")
-//                 .attachPatternMatched(this._onObjectMatched, this);
-
-//         },
-
-//         _onObjectMatched: function (oEvent) {
-
-//             const sPath =
-//                 decodeURIComponent(
-//                     oEvent.getParameter("arguments").id
-//                 );
-
-//             this.getView().bindElement({
-//                 path: sPath,
-//                 model: "mdlOcorrencias"
-//             });
-
-//         }
-
-
-//         // onInit: function () {
-
-//         //     this.getOwnerComponent()
-//         //         .getRouter()
-//         //         .getRoute("detail")
-//         //         .attachPatternMatched(
-//         //             this._onObjectMatched,
-//         //             this
-//         //         );
-//         // },
-
-//         // _onObjectMatched: function(oEvent) {
-
-//         //     var sIndex =
-//         //         oEvent.getParameter("arguments").ocorrencia;
-
-//         //     var sPath =
-//         //         "/Ocorrencias/" + sIndex;
-
-//         //     this.getView().bindElement({
-//         //         path: sPath,
-//         //         model: "mdlOcorrencias"
-//         //     });
-//         // }
-
-// 	});
-// });

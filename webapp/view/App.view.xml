@@ -7,6 +7,6 @@
 
     <f:FlexibleColumnLayout
         id="flexiblecolumnlayout"
-        layout="{/layout}" />
+        layout="{layout>/layout}" />
 
 </mvc:View>

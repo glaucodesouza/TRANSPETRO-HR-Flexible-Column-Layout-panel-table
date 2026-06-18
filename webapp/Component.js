@@ -29,11 +29,20 @@ sap.ui.define([
 
             this.setModel(models.createDeviceModel(), "device");
 
+
             const oLayoutModel = new JSONModel({
-                layout: LayoutType.OneColumn
+                layout: LayoutType.OneColumn,
+                actionButtonsInfo: {
+                    midColumn: {
+                        fullScreen: null,
+                        exitFullScreen: null,
+                        closeColumn: null
+                    }
+                }
             });
 
             this.setModel(oLayoutModel, "layout");
+
 
             const oOcorrencias = {
                 Ocorrencias: [
