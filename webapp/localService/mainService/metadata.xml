@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZFAIXAGER_SRV" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="TDetalhenivel" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Faixanivel"/>
+                </Key>
+                <Property Name="Meunivel" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Faixanivel" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Campo de caracteres do comprimento 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Remuneracao" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Campo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FaixaGerencial" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IUname"/>
+                    <PropertyRef Name="EDescger"/>
+                </Key>
+                <Property Name="IUname" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Campo de texto de comprimento 12" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EDescger" Type="Edm.String" Nullable="false" MaxLength="79" sap:label="Linha" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EErro" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="c" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EFaixaNivel" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Campo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EFuncao" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EGrade" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Campo de 3 bytes de comprimento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ENivelAtual" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Campo de caracteres do comprimento 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EStext" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZFAIXAGER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="TDetalhenivelSet" EntityType="ZFAIXAGER_SRV.TDetalhenivel" sap:content-version="1"/>
+                <EntitySet Name="FaixaGerencial" EntityType="ZFAIXAGER_SRV.FaixaGerencial" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="https://stp01sap0013.transp.biz:8400/sap/opu/odata/sap/ZFAIXAGER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://stp01sap0013.transp.biz:8400/sap/opu/odata/sap/ZFAIXAGER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
